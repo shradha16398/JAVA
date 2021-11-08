@@ -2,45 +2,47 @@
 1.write a singletone class.conform that singletone class can not be inherited
 
  
-package SingletoneDemo;
-/*we can not extend singletone class beacause
-1.it wont have default constructor and we make user define constructor as private
- */
-
-public class Facebook {
-    static Facebook f1;
-    private  Facebook()
+class Singleton {
+    
+    private static Singleton single_instance = null;
+    public String s;
+    private Singleton()
     {
-        System.out.println("session started");
-
+        s = "Hello I am a string part of Singleton class";
     }
-    static Facebook getsession()
+ 
+    
+    public static Singleton Singleton()
     {
-        if(f1==null)
-        {
-            f1= new Facebook(); //singletone object
+        if (single_instance == null) {
+            single_instance = new Singleton();
         }
-        return  f1;
-    }
-    void displayprofile()
-    {
-        System.out.println("show user profile");
-    }
-    void displayhome()
-    {
-        System.out.println("Facebook home page");
+        return single_instance;
     }
 }
+ 
 
+public class Gfg {
+	   
+    public static void main(String args[])
+    {
+        Singletone x = Singletone.Singleton();
+ 
+        Singletone y = Singletone.Singleton();
+ 
+        Singletone z = Singletone.Singleton();
+ 
+        x.s = (x.s).toUpperCase();
 
-//MAIN CLASS
-
-public class MainApp3 {
-    public static void main(String[] args) {
-      Facebook f2=Facebook.getsession();
-      f2.displayhome();
-      Facebook f3=Facebook.getsession();
-      f3.displayprofile();
-
+        System.out.println("String from x is " + x.s);
+        System.out.println("String from y is " + y.s);
+        System.out.println("String from z is " + z.s);
+        System.out.println("\n");
+ 
+        z.s = (z.s).toLowerCase();
+ 
+        System.out.println("String from x is " + x.s);
+        System.out.println("String from y is " + y.s);
+        System.out.println("String from z is " + z.s);
     }
 }
